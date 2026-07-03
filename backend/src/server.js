@@ -3,9 +3,14 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import app from "./app.js";
 
-dotenv.config({
-    path: "./.env",
-});
+// Safe dynamic environment loading
+if (process.env.NODE_ENV !== "production") {
+    dotenv.config({
+        path: "./.env",
+    });
+}
+
+// Connect to MongoDB Atlas
 connectDB();
 
 const PORT = process.env.PORT || 5000;
