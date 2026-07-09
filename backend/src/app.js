@@ -7,30 +7,17 @@ import teacherRoutes from "./routes/teacher.routes.js";
 
 const app = express();
 
-// Set up dynamic allowed origins for production and local development
-const allowedOrigins = [
-  process.env.FRONTEND_URL, 
-  "http://localhost:5173"
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps, curl, or server-to-server)
-      if (!origin) return callback(null, true);
-      
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [
+      "http://localhost:5173",
+      "https://jiit-review.vercel.app"
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
-
 app.use(express.json({
     limit: "32kb",
 }));
@@ -38,16 +25,16 @@ app.use(express.urlencoded({ extended: true, limit: "32kb" }));
 app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.send("JIIT Review API running [Production Live]");
+  res.send("JIIT Review API running");
 });
 
-// Auth Routes
+//Auth Routes
 app.use("/api/auth", authRoutes);
 
-// Subject Routes
+//Subject Routes
 app.use("/api/subjects", subjectRoutes);
 
-// Teacher Routes
+//Teacher Routes
 app.use("/api/teachers", teacherRoutes);
 
 export default app;
