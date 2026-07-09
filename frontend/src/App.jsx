@@ -4,7 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 
 import Register from './pages/Register';
-import VerifyOTP from './pages/VerifyOTP';
+import VerifyOTP from './pages/VerifyOtp';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import TeacherDetail from './pages/TeacherDetail';
