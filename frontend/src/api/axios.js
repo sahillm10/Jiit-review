@@ -3,7 +3,7 @@ import axios from 'axios';
 // Dynamically handle the backend API URL between local development and production
 const api = axios.create({
   baseURL: import.meta.env.PROD 
-    ? 'https://your-backend-app-name.onrender.com/api' // Replace with your live Render URL
+    ? 'https://jiit-review.onrender.com/api'
     : 'http://localhost:5000/api', 
   headers: {
     'Content-Type': 'application/json'
